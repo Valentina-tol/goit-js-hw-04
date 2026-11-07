@@ -1,17 +1,45 @@
-'use strict';
+// Функция вычисляет среднее количество калорий за все дни
+function calcAverageCalories(days) {
+  // Если массив пустой, сразу возвращаем 0
+  if (days.length === 0) {
+    return 0;
+  }
 
-// Combine two arrays and limit the result
-function makeArray(firstArray, secondArray, maxLength) {
-  const newArray = firstArray.concat(secondArray);
+  // Здесь будем хранить общую сумму калорий
+  let totalCalories = 0;
 
-  // Return only the allowed number of elements
-  return newArray.slice(0, maxLength);
+  // Перебираем каждый объект дня
+  for (const day of days) {
+    totalCalories += day.calories;
+  }
+
+  // Делим общую сумму калорий на количество дней
+  return totalCalories / days.length;
 }
 
-// Test the function
-console.log(makeArray(['Mango', 'Poly'], ['Ajax', 'Chelsea'], 3));
-console.log(makeArray(['Mango', 'Poly', 'Houston'], ['Ajax', 'Chelsea'], 4));
-console.log(makeArray(['Mango'], ['Ajax', 'Chelsea', 'Poly', 'Houston'], 3));
-console.log(makeArray(['Earth', 'Jupiter'], ['Neptune', 'Uranus'], 2));
-console.log(makeArray(['Earth', 'Jupiter'], ['Neptune', 'Uranus'], 4));
-console.log(makeArray(['Earth', 'Jupiter'], ['Neptune', 'Uranus', 'Venus'], 0));
+// Проверка функции
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 3010 },
+    { day: "tuesday", calories: 3200 },
+    { day: "wednesday", calories: 3120 },
+    { day: "thursday", calories: 2900 },
+    { day: "friday", calories: 3450 },
+    { day: "saturday", calories: 3280 },
+    { day: "sunday", calories: 3300 },
+  ])
+); // 3180
+
+console.log(
+  calcAverageCalories([
+    { day: "monday", calories: 2040 },
+    { day: "tuesday", calories: 2270 },
+    { day: "wednesday", calories: 2420 },
+    { day: "thursday", calories: 1900 },
+    { day: "friday", calories: 2370 },
+    { day: "saturday", calories: 2280 },
+    { day: "sunday", calories: 2610 },
+  ])
+); // 2270
+
+console.log(calcAverageCalories([])); // 0

@@ -1,23 +1,30 @@
-'use strict';
+const profile = {
+  username: "Jacob",
+  playTime: 300,
 
-// Return numbers greater than the given value
-function filterArray(numbers, value) {
-  const filteredNumbers = [];
+  // Изменяет имя пользователя
+  changeUsername(newName) {
+    this.username = newName;
+  },
 
-  // Check each number in the array
-  for (const number of numbers) {
-    if (number > value) {
-      filteredNumbers.push(number);
-    }
-  }
+  // Добавляет часы к текущему игровому времени
+  updatePlayTime(hours) {
+    this.playTime += hours;
+  },
 
-  // Return the filtered array
-  return filteredNumbers;
-}
+  // Возвращает информацию о профиле
+  getInfo() {
+    return `${this.username} has ${this.playTime} active hours!`;
+  },
+};
 
-// Test the function
-console.log(filterArray([1, 2, 3, 4, 5], 3));
-console.log(filterArray([1, 2, 3, 4, 5], 4));
-console.log(filterArray([1, 2, 3, 4, 5], 5));
-console.log(filterArray([12, 24, 8, 41, 76], 38));
-console.log(filterArray([12, 24, 8, 41, 76], 20));
+// Проверяем исходные данные
+console.log(profile.getInfo()); // "Jacob has 300 active hours!"
+
+// Изменяем имя
+profile.changeUsername("Marco");
+console.log(profile.getInfo()); // "Marco has 300 active hours!"
+
+// Добавляем 20 часов
+profile.updatePlayTime(20);
+console.log(profile.getInfo()); // "Marco has 320 active hours!"

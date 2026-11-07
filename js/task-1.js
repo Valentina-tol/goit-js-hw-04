@@ -1,12 +1,33 @@
-'use strict';
+// Функция проверяет, поместятся ли все товары в контейнер
+function isEnoughCapacity(products, containerSize) {
+  // Получаем массив со значениями всех свойств объекта
+  const productValues = Object.values(products);
 
-// Convert a title into a URL-friendly slug
-function slugify(title) {
-  return title.toLowerCase().split(' ').join('-');
+  // Здесь будем хранить общее количество товаров
+  let totalProducts = 0;
+
+  // Перебираем количество каждого товара и складываем
+  for (const value of productValues) {
+    totalProducts += value;
+  }
+
+  // Возвращаем true, если товары помещаются, иначе false
+  return totalProducts <= containerSize;
 }
 
-// Test the function
-console.log(slugify('Arrays for beginners'));
-console.log(slugify('English for developer'));
-console.log(slugify('Ten secrets of JavaScript'));
-console.log(slugify('How to become a JUNIOR developer in TWO WEEKS'));
+// Проверка функции
+console.log(
+  isEnoughCapacity({ apples: 2, grapes: 3, carrots: 1 }, 8)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 4, grapes: 6, lime: 16 }, 12)
+); // false
+
+console.log(
+  isEnoughCapacity({ apples: 1, lime: 5, tomatos: 3 }, 14)
+); // true
+
+console.log(
+  isEnoughCapacity({ apples: 18, potatos: 5, oranges: 2 }, 7)
+); // false
