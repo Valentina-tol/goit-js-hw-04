@@ -1,3 +1,3 @@
-# goit-js-hw-03
+# goit-js-hw-04
 
-GoIT JavaScript Homework 03 – Arrays and Functions
+GoIT JavaScript Homework 04 – Objects and Object Methods
